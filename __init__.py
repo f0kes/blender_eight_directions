@@ -37,8 +37,11 @@ def register():
     bpy.utils.register_class(dir_operator.MultiDirOperator)
     bpy.utils.register_class(dir_panel.MultiDirPanel)
     bpy.utils.register_class(my_import_operator.ImportBaseOperator)
+    bpy.utils.register_class(my_import_operator.ImportAnimationOperator)
     bpy.utils.register_class(my_source_properties.ObjectPointerProperty)
+    bpy.utils.register_class(my_source_properties.AnimationSourceProperties)
     bpy.utils.register_class(my_source_properties.SourceProperties)
+
     bpy.types.Scene.source_properties = bpy.props.PointerProperty(
         type=my_source_properties.SourceProperties
     )
@@ -48,7 +51,9 @@ def unregister():
     bpy.utils.unregister_class(dir_operator.MultiDirOperator)
     bpy.utils.unregister_class(dir_panel.MultiDirPanel)
     bpy.utils.unregister_class(my_import_operator.ImportBaseOperator)
+    bpy.utils.unregister_class(my_import_operator.ImportAnimationOperator)
     bpy.utils.unregister_class(my_source_properties.ObjectPointerProperty)
+    bpy.utils.unregister_class(my_source_properties.AnimationSourceProperties)
     bpy.utils.unregister_class(my_source_properties.SourceProperties)
 
 

@@ -41,8 +41,12 @@ def restore_initial_paths(tree: bpy.types.NodeTree):
                 node.base_path = node_initial_paths[node]
 
 
-def render8directions_selected_objects():
-    selected_list = bpy.context.selected_objects
+def render8directions_selected_objects(context: bpy.types.Context):
+    base_model = context.scene.source_properties.source_object
+    if base_model is None:
+        return
+    selected_list = [base_model]
+    bpy.context.active_object = base_model
     tree = bpy.context.scene.node_tree
     bpy.ops.object.select_all(action="TOGGLE")
     scene = bpy.context.scene
@@ -96,5 +100,5 @@ class MultiDirOperator(bpy.types.Operator):
     bl_options = {"REGISTER", "UNDO"}
 
     def execute(self, context):
-        render8directions_selected_objects()
+        render8directions_selected_objects(context)
         return {"FINISHED"}
